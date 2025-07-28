@@ -308,15 +308,15 @@
 
         function loadDemo(caseType) {
             const benign = {
-                radius_se: 0.3345, texture_se: 1.281, perimeter_se: 2.25, area_se: 25.22, smoothness_se: 0.005356,
-                compactness_se: 0.03086, concavity_se: 0.04079, concave_points_se: 0.01366, symmetry_se: 0.02185, 
-                fractal_dimension_se: 0.004973
+                radius_se: 0.335, texture_se: 1.281, perimeter_se: 2.25, area_se: 25.22, smoothness_se: 0.005,
+                compactness_se: 0.031, concavity_se: 0.041, concave_points_se: 0.014, symmetry_se: 0.022, 
+                fractal_dimension_se: 0.005
             };
 
             const malignant = {
-                radius_se: 0.5435, texture_se: 0.7339, perimeter_se: 3.398, area_se: 74.08, smoothness_se: 0.005225,
-                compactness_se: 0.01308, concavity_se: 0.0186, concave_points_se: 0.0134, symmetry_se: 0.01389, 
-                fractal_dimension_se: 0.003532
+                radius_se: 0.544, texture_se: 0.734, perimeter_se: 3.398, area_se: 74.08, smoothness_se: 0.005,
+                compactness_se: 0.013, concavity_se: 0.019, concave_points_se: 0.013, symmetry_se: 0.014, 
+                fractal_dimension_se: 0.004
             };
 
             const data = caseType === 'malignant' ? malignant : benign;
