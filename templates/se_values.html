@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Diagnosis System</title>
+</head>
+<body>
+    <h1>Welcome to the Breast Cancer Diagnosis System</h1>
+    <p>Kindly fill in the following form.</p>
+       
+    <form action="{{ url_for('step_2') }}" method="post">
+        <label for="radius_se">Radius Standard Error:</label>
+        <input type="float" id="radius_se" name="radius_se" required><br><br>
+
+        <label for="texture_se">Texture Standard Error:</label>
+        <input type="float" id="texture_se" name="texture_se" required><br><br>
+
+        <label for="perimeter_se">Perimeter Standard Error:</label>
+        <input type="float" id="perimeter_se" name="perimeter_se" required><br><br>
+
+        <label for="area_se">Area Standard Error:</label>
+        <input type="float" id="area_se" name="area_se" required><br><br>
+
+        <label for="smoothness_se">Smoothness Standard Error:</label>
+        <input type="float" id="smoothness_se" name="smoothness_se" required><br><br>
+
+        <label for="compactness_se">Compactness Standard Error:</label>
+        <input type="float" id="compactness_se" name="compactness_se" required><br><br>
+
+        <label for="concavity_se">Concavity Standard Error:</label>
+        <input type="float" id="concavity_se" name="concavity_se" required><br><br>
+
+        <label for="concave_points_se">Concave Standard Error:</label>
+        <input type="float" id="concave_points_se" name="concave_points_se" required><br><br>
+
+        <label for="symmetry_se">Symmetry Standard Error:</label>
+        <input type="float" id="symmetry_se" name="symmetry_se" required><br><br>
+
+        <label for="fractal_dimension_se">Fractal Dimension Standard Error:</label>
+        <input type="float" id="fractal_dimension_se" name="fractal_dimension_se" required><br><br>
+
+        <button type="submit">Next Step >></button>
+    </form>
+
+    <button type="button" onclick="generateRandomInputs()">Generate Random Inputs</button>
+</body>
+
+<script>
+    function generateRandomInputs() {
+        const ranges = {
+            radius_se: [0.1, 1.5],
+            texture_se: [0.3, 2.5],
+            perimeter_se: [0.5, 3.5],
+            area_se: [1, 50],
+            smoothness_se: [0.001, 0.02],
+            compactness_se: [0.005, 0.1],
+            concavity_se: [0.005, 0.2],
+            concave_points_se: [0.001, 0.05],
+            symmetry_se: [0.005, 0.08],
+            fractal_dimension_se: [0.001, 0.03]
+        };
+    
+    for (const feature in ranges) {
+    const [min, max] = ranges[feature];
+    const randomValue = (Math.random() * (max - min) + min).toFixed(5);
+    document.getElementsByName(feature)[0].value = randomValue;
+    }
+    }
+</script>
+
+</html>

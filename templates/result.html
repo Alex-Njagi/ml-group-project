@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Diagnosis System</title>
+</head>
+<body>
+    <h1>Thank you for using the Breast Cancer Diagnosis System!</h1>
+    <p>Here is the prediction made from your measurements.</p>
+
+    <h2>Prediction Result:</h2>
+    <p><strong>Diagnosis:</strong> {{ label | upper}}</p>
+    <p><strong>Confidence:</strong> {{ confidence }}</p>
+
+    <p>Based on the provided measurements, the model predicts that the breast cancer diagnosis is: 
+        <strong>{{ label }}</strong>.</p>
+    <p>Thank you for using our system. If you have any further questions or need assistance, please contact your 
+        healthcare provider.</p>
+
+        <a href="{{ url_for('home') }}">
+            <button>Return to Home</button>
+        </a>
+</body>

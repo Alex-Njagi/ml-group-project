@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Diagnosis System</title>
+</head>
+<body>
+    <h1>Welcome to the Breast Cancer Diagnosis System</h1>
+    <p>Kindly fill in the following form.</p>
+       
+    <form action="{{ url_for('step_1') }}" method="post">
+        <label for="radius_mean">Radius Mean:</label>
+        <input type="float" id="radius_mean" name="radius_mean" required><br><br>
+
+        <label for="texture_mean">Texture Mean:</label>
+        <input type="float" id="texture_mean" name="texture_mean" required><br><br>
+
+        <label for="perimeter_mean">Perimeter Mean:</label>
+        <input type="float" id="perimeter_mean" name="perimeter_mean" required><br><br>
+
+        <label for="area_mean">Area Mean:</label>
+        <input type="float" id="area_mean" name="area_mean" required><br><br>
+
+        <label for="smoothness_mean">Smoothness Mean:</label>
+        <input type="float" id="smoothness_mean" name="smoothness_mean" required><br><br>
+
+        <label for="compactness_mean">Compactness Mean:</label>
+        <input type="float" id="compactness_mean" name="compactness_mean" required><br><br>
+
+        <label for="concavity_mean">Concavity Mean:</label>
+        <input type="float" id="concavity_mean" name="concavity_mean" required><br><br>
+
+        <label for="concave_points_mean">Concave Points Mean:</label>
+        <input type="float" id="concave_points_mean" name="concave_points_mean" required><br><br>
+
+        <label for="symmetry_mean">Symmetry Mean:</label>
+        <input type="float" id="symmetry_mean" name="symmetry_mean" required><br><br>
+
+        <label for="fractal_dimension_mean">Fractal Dimension Mean:</label>
+        <input type="float" id="fractal_dimension_mean" name="fractal_dimension_mean" required><br><br>
+
+        <button type="submit">Next Step >></button>
+    </form>
+
+    <button type="button" onclick="generateRandomInputs()">Generate Random Inputs</button>
+</body>
+
+<script>
+    function generateRandomInputs() {
+      const ranges = {
+        radius_mean: [6, 28],
+        texture_mean: [10, 40],
+        perimeter_mean: [40, 190],
+        area_mean: [150, 2500],
+        smoothness_mean: [0.05, 0.16],
+        compactness_mean: [0.02, 0.35],
+        concavity_mean: [0.01, 0.4],
+        concave_points_mean: [0.005, 0.2],
+        symmetry_mean: [0.1, 0.3],
+        fractal_dimension_mean: [0.05, 0.1]
+      };
+    
+      for (const feature in ranges) {
+        const [min, max] = ranges[feature];
+        const randomValue = (Math.random() * (max - min) + min).toFixed(5);
+        document.getElementsByName(feature)[0].value = randomValue;
+      }
+    }
+</script>
+
+</html>

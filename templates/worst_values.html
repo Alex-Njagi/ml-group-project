@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Diagnosis System</title>
+</head>
+<body>
+    <h1>Welcome to the Breast Cancer Diagnosis System</h1>
+    <p>Kindly fill in the following form.</p>
+       
+    <form action="{{ url_for('step_3') }}" method="post">
+        <label for="radius_worst">Radius Worst Value:</label>
+        <input type="float" id="radius_worst" name="radius_worst" required><br><br>
+
+        <label for="texture_worst">Texture Worst Value:</label>
+        <input type="float" id="texture_worst" name="texture_worst" required><br><br>
+
+        <label for="perimeter_worst">Perimeter Worst Value:</label>
+        <input type="float" id="perimeter_worst" name="perimeter_worst" required><br><br>
+
+        <label for="area_worst">Area Worst Value:</label>
+        <input type="float" id="area_worst" name="area_worst" required><br><br>
+
+        <label for="smoothness_worst">Smoothness Worst Value:</label>
+        <input type="float" id="smoothness_worst" name="smoothness_worst" required><br><br>
+
+        <label for="compactness_worst">Compactness Worst Value:</label>
+        <input type="float" id="compactness_worst" name="compactness_worst" required><br><br>
+
+        <label for="concavity_worst">Concavity Worst Value:</label>
+        <input type="float" id="concavity_worst" name="concavity_worst" required><br><br>
+
+        <label for="concave_points_worst">Concave Points Worst Value:</label>
+        <input type="float" id="concave_points_worst" name="concave_points_worst" required><br><br>
+
+        <label for="symmetry_worst">Symmetry Worst Value:</label>
+        <input type="float" id="symmetry_worst" name="symmetry_worst" required><br><br>
+
+        <label for="fractal_dimension_worst">Fractal Dimension Worst Value:</label>
+        <input type="float" id="fractal_dimension_worst" name="fractal_dimension_worst" required><br><br>
+
+        <button type="submit">Generate Prediction >></button>
+    </form>
+
+    <button type="button" onclick="generateRandomInputs()">Generate Random Inputs</button>
+</body>
+
+<script>
+    function generateRandomInputs() {
+        const ranges = {
+            radius_worst: [7, 35],
+            texture_worst: [12, 50],
+            perimeter_worst: [50, 220],
+            area_worst: [200, 3000],
+            smoothness_worst: [0.07, 0.22],
+            compactness_worst: [0.02, 1.2],
+            concavity_worst: [0.02, 1.2],
+            concave_points_worst: [0.01, 0.5],
+            symmetry_worst: [0.15, 0.6],
+            fractal_dimension_worst: [0.05, 0.2]
+        };
+    
+    for (const feature in ranges) {
+    const [min, max] = ranges[feature];
+    const randomValue = (Math.random() * (max - min) + min).toFixed(5);
+    document.getElementsByName(feature)[0].value = randomValue;
+    }
+    }
+</script>
+</html>
