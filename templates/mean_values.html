@@ -301,15 +301,23 @@
         
             for (const feature in ranges) {
                 const [min, max] = ranges[feature];
-                const randomValue = (Math.random() * (max - min) + min).toFixed(6);
+                const randomValue = (Math.random() * (max - min) + min).toFixed(range(1, 6));
                 document.getElementsByName(feature)[0].value = randomValue;
             }
         }
 
         function loadDemo(caseType) {
           const benign = {
-            radius_mean: 12.45, texture_mean: 15.7, perimeter_mean: 82.57, area_mean: 477.1, smoothness_mean: 0.1278,
-            compactness_mean: 0.17, concavity_mean: 0.1578, concave_points_mean: 0.08089, symmetry_mean: 0.2087, fractal_dimension_mean: 0.07613
+            radius_mean: 12.450000,
+            texture_mean: 15.700000,
+            perimeter_mean: 82.570000,
+            area_mean: 477.100000,
+            smoothness_mean: 0.127800,
+            compactness_mean: 0.170000,
+            concavity_mean: 0.157800,
+            concave_points_mean: 0.080890,
+            symmetry_mean: 0.208700,
+            fractal_dimension_mean: 0.076130
           };
 
           const malignant = {
