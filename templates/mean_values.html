@@ -301,7 +301,7 @@
         
             for (const feature in ranges) {
                 const [min, max] = ranges[feature];
-                const randomValue = (Math.random() * (max - min) + min).toFixed(Math.random(range(1, 6)));
+                const randomValue = (Math.random() * (max - min) + min).toFixed(6);
                 document.getElementsByName(feature)[0].value = randomValue;
             }
         }
