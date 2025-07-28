@@ -301,28 +301,36 @@
         
             for (const feature in ranges) {
                 const [min, max] = ranges[feature];
-                const randomValue = (Math.random() * (max - min) + min).toFixed(6);
+                const randomValue = (Math.random() * (max - min) + min).toFixed(range(1, 6));
                 document.getElementsByName(feature)[0].value = randomValue;
             }
         }
 
         function loadDemo(caseType) {
             const benign = {
-                radius_se: 0.334500,
-                texture_se: 1.281000,
-                perimeter_se: 2.250000,
-                area_se: 25.220000,
-                smoothness_se: 0.005356,
-                compactness_se: 0.030860,
-                concavity_se: 0.040790,
-                concave_points_se: 0.013660,
-                symmetry_se: 0.021850,
-                fractal_dimension_se: 0.004973
+                radius_se: 0.269900,
+                texture_se: 0.788600,
+                perimeter_se: 2.058000,
+                area_se: 23.560000,
+                smoothness_se: 0.008462,
+                compactness_se: 0.014600,
+                concavity_se: 0.023870,
+                concave_points_se: 0.013150,
+                symmetry_se: 0.019800,
+                fractal_dimension_se: 0.002300
             };
 
             const malignant = {
-                radius_se: 0.5435, texture_se: 0.7339, perimeter_se: 3.398, area_se: 74.08, smoothness_se: 0.005225,
-                compactness_se: 0.01308, concavity_se: 0.0186, concave_points_se: 0.0134, symmetry_se: 0.01389, fractal_dimension_se: 0.003532
+                radius_se: 1.095000,
+                texture_se: 0.905300,
+                perimeter_se: 8.589000,
+                area_se: 153.400000,
+                smoothness_se: 0.006399,
+                compactness_se: 0.049040,
+                concavity_se: 0.053730,
+                concave_points_se: 0.015870,
+                symmetry_se: 0.030030,
+                fractal_dimension_se: 0.006193
             };
 
             const data = caseType === 'malignant' ? malignant : benign;

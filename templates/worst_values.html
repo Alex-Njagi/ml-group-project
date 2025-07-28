@@ -301,28 +301,36 @@
         
             for (const feature in ranges) {
                 const [min, max] = ranges[feature];
-                const randomValue = (Math.random() * (max - min) + min).toFixed(6);
+                const randomValue = (Math.random() * (max - min) + min).toFixed(range(1, 6));
                 document.getElementsByName(feature)[0].value = randomValue;
             }
         }
 
         function loadDemo(caseType) {
             const benign = {
-                radius_worst: 14.500000,
-                texture_worst: 20.490000,
-                perimeter_worst: 96.090000,
-                area_worst: 641.200000,
-                smoothness_worst: 0.164000,
-                compactness_worst: 0.624200,
-                concavity_worst: 0.692200,
-                concave_points_worst: 0.178500,
-                symmetry_worst: 0.423300,
-                fractal_dimension_worst: 0.117900
+                radius_worst: 15.110000,
+                texture_worst: 19.260000,
+                perimeter_worst: 99.700000,
+                area_worst: 711.200000,
+                smoothness_worst: 0.144000,
+                compactness_worst: 0.177300,
+                concavity_worst: 0.239000,
+                concave_points_worst: 0.128800,
+                symmetry_worst: 0.297700,
+                fractal_dimension_worst: 0.072590
             };
 
             const malignant = {
-                radius_worst: 24.29, texture_worst: 21.37, perimeter_worst: 162.8, area_worst: 1866.0, smoothness_worst: 0.1066,
-                compactness_worst: 0.1701, concavity_worst: 0.2473, concave_points_worst: 0.1389, symmetry_worst: 0.2968, fractal_dimension_worst: 0.09365
+                radius_worst: 25.380000,
+                texture_worst: 17.330000,
+                perimeter_worst: 184.600000,
+                area_worst: 2019.000000,
+                smoothness_worst: 0.162200,
+                compactness_worst: 0.665600,
+                concavity_worst: 0.711900,
+                concave_points_worst: 0.265400,
+                symmetry_worst: 0.460100,
+                fractal_dimension_worst: 0.118900
             };
 
             const data = caseType === 'malignant' ? malignant : benign;
