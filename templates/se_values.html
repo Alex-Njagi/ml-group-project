@@ -217,52 +217,52 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="radius_se">Radius Standard Error</label>
-                        <input type="number" id="radius_se" name="radius_se" step="0.001" required>
+                        <input type="number" id="radius_se" name="radius_se" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="texture_se">Texture Standard Error</label>
-                        <input type="number" id="texture_se" name="texture_se" step="0.001" required>
+                        <input type="number" id="texture_se" name="texture_se" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="perimeter_se">Perimeter Standard Error</label>
-                        <input type="number" id="perimeter_se" name="perimeter_se" step="0.001" required>
+                        <input type="number" id="perimeter_se" name="perimeter_se" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="area_se">Area Standard Error</label>
-                        <input type="number" id="area_se" name="area_se" step="0.001" required>
+                        <input type="number" id="area_se" name="area_se" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="smoothness_se">Smoothness Standard Error</label>
-                        <input type="number" id="smoothness_se" name="smoothness_se" step="0.001" required>
+                        <input type="number" id="smoothness_se" name="smoothness_se" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="compactness_se">Compactness Standard Error</label>
-                        <input type="number" id="compactness_se" name="compactness_se" step="0.001" required>
+                        <input type="number" id="compactness_se" name="compactness_se" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="concavity_se">Concavity Standard Error</label>
-                        <input type="number" id="concavity_se" name="concavity_se" step="0.001" required>
+                        <input type="number" id="concavity_se" name="concavity_se" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="concave_points_se">Concave Points Standard Error</label>
-                        <input type="number" id="concave_points_se" name="concave_points_se" step="0.001" required>
+                        <input type="number" id="concave_points_se" name="concave_points_se" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="symmetry_se">Symmetry Standard Error</label>
-                        <input type="number" id="symmetry_se" name="symmetry_se" step="0.001" required>
+                        <input type="number" id="symmetry_se" name="symmetry_se" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="fractal_dimension_se">Fractal Dimension Standard Error</label>
-                        <input type="number" id="fractal_dimension_se" name="fractal_dimension_se" step="0.001" required>
+                        <input type="number" id="fractal_dimension_se" name="fractal_dimension_se" step="0.000001" required>
                     </div>
                 </div>
 
@@ -301,22 +301,20 @@
         
             for (const feature in ranges) {
                 const [min, max] = ranges[feature];
-                const randomValue = (Math.random() * (max - min) + min).toFixed(3);
+                const randomValue = (Math.random() * (max - min) + min).toFixed(6);
                 document.getElementsByName(feature)[0].value = randomValue;
             }
         }
 
         function loadDemo(caseType) {
             const benign = {
-                radius_se: 0.335, texture_se: 1.281, perimeter_se: 2.25, area_se: 25.22, smoothness_se: 0.005,
-                compactness_se: 0.031, concavity_se: 0.041, concave_points_se: 0.014, symmetry_se: 0.022, 
-                fractal_dimension_se: 0.005
+                radius_se: 0.3345, texture_se: 1.281, perimeter_se: 2.25, area_se: 25.22, smoothness_se: 0.005356,
+                compactness_se: 0.03086, concavity_se: 0.04079, concave_points_se: 0.01366, symmetry_se: 0.02185, fractal_dimension_se: 0.004973
             };
 
             const malignant = {
-                radius_se: 0.544, texture_se: 0.734, perimeter_se: 3.398, area_se: 74.08, smoothness_se: 0.005,
-                compactness_se: 0.013, concavity_se: 0.019, concave_points_se: 0.013, symmetry_se: 0.014, 
-                fractal_dimension_se: 0.004
+                radius_se: 0.5435, texture_se: 0.7339, perimeter_se: 3.398, area_se: 74.08, smoothness_se: 0.005225,
+                compactness_se: 0.01308, concavity_se: 0.0186, concave_points_se: 0.0134, symmetry_se: 0.01389, fractal_dimension_se: 0.003532
             };
 
             const data = caseType === 'malignant' ? malignant : benign;

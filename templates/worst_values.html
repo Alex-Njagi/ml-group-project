@@ -217,52 +217,52 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="radius_worst">Radius Worst Value</label>
-                        <input type="number" id="radius_worst" name="radius_worst" step="0.001" required>
+                        <input type="number" id="radius_worst" name="radius_worst" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="texture_worst">Texture Worst Value</label>
-                        <input type="number" id="texture_worst" name="texture_worst" step="0.001" required>
+                        <input type="number" id="texture_worst" name="texture_worst" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="perimeter_worst">Perimeter Worst Value</label>
-                        <input type="number" id="perimeter_worst" name="perimeter_worst" step="0.001" required>
+                        <input type="number" id="perimeter_worst" name="perimeter_worst" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="area_worst">Area Worst Value</label>
-                        <input type="number" id="area_worst" name="area_worst" step="0.001" required>
+                        <input type="number" id="area_worst" name="area_worst" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="smoothness_worst">Smoothness Worst Value</label>
-                        <input type="number" id="smoothness_worst" name="smoothness_worst" step="0.001" required>
+                        <input type="number" id="smoothness_worst" name="smoothness_worst" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="compactness_worst">Compactness Worst Value</label>
-                        <input type="number" id="compactness_worst" name="compactness_worst" step="0.001" required>
+                        <input type="number" id="compactness_worst" name="compactness_worst" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="concavity_worst">Concavity Worst Value</label>
-                        <input type="number" id="concavity_worst" name="concavity_worst" step="0.001" required>
+                        <input type="number" id="concavity_worst" name="concavity_worst" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="concave_points_worst">Concave Points Worst Value</label>
-                        <input type="number" id="concave_points_worst" name="concave_points_worst" step="0.001" required>
+                        <input type="number" id="concave_points_worst" name="concave_points_worst" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="symmetry_worst">Symmetry Worst Value</label>
-                        <input type="number" id="symmetry_worst" name="symmetry_worst" step="0.001" required>
+                        <input type="number" id="symmetry_worst" name="symmetry_worst" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="fractal_dimension_worst">Fractal Dimension Worst Value</label>
-                        <input type="number" id="fractal_dimension_worst" name="fractal_dimension_worst" step="0.001" required>
+                        <input type="number" id="fractal_dimension_worst" name="fractal_dimension_worst" step="0.000001" required>
                     </div>
                 </div>
 
@@ -301,22 +301,20 @@
         
             for (const feature in ranges) {
                 const [min, max] = ranges[feature];
-                const randomValue = (Math.random() * (max - min) + min).toFixed(3);
+                const randomValue = (Math.random() * (max - min) + min).toFixed(6);
                 document.getElementsByName(feature)[0].value = randomValue;
             }
         }
 
         function loadDemo(caseType) {
             const benign = {
-                radius_worst: 14.5, texture_worst: 20.49, perimeter_worst: 96.09, area_worst: 641.2, smoothness_worst:
-                0.164, compactness_worst: 0.624, concavity_worst: 0.692, concave_points_worst: 0.179,
-                symmetry_worst: 0.423, fractal_dimension_worst: 0.118
+                radius_worst: 14.5, texture_worst: 20.49, perimeter_worst: 96.09, area_worst: 641.2, smoothness_worst: 0.164,
+                compactness_worst: 0.6242, concavity_worst: 0.6922, concave_points_worst: 0.1785, symmetry_worst: 0.4233, fractal_dimension_worst: 0.1179
             };
 
             const malignant = {
-                radius_worst: 24.29, texture_worst: 21.37, perimeter_worst: 162.8, area_worst: 1866.0, 
-                smoothness_worst: 0.107, compactness_worst: 0.170, concavity_worst: 0.247, concave_points_worst:
-                0.139, symmetry_worst: 0.297, fractal_dimension_worst: 0.094
+                radius_worst: 24.29, texture_worst: 21.37, perimeter_worst: 162.8, area_worst: 1866.0, smoothness_worst: 0.1066,
+                compactness_worst: 0.1701, concavity_worst: 0.2473, concave_points_worst: 0.1389, symmetry_worst: 0.2968, fractal_dimension_worst: 0.09365
             };
 
             const data = caseType === 'malignant' ? malignant : benign;

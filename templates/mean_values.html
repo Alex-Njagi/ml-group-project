@@ -217,52 +217,52 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="radius_mean">Radius Mean</label>
-                        <input type="number" id="radius_mean" name="radius_mean" step="0.001" required>
+                        <input type="number" id="radius_mean" name="radius_mean" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="texture_mean">Texture Mean</label>
-                        <input type="number" id="texture_mean" name="texture_mean" step="0.001" required>
+                        <input type="number" id="texture_mean" name="texture_mean" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="perimeter_mean">Perimeter Mean</label>
-                        <input type="number" id="perimeter_mean" name="perimeter_mean" step="0.001" required>
+                        <input type="number" id="perimeter_mean" name="perimeter_mean" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="area_mean">Area Mean</label>
-                        <input type="number" id="area_mean" name="area_mean" step="0.001" required>
+                        <input type="number" id="area_mean" name="area_mean" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="smoothness_mean">Smoothness Mean</label>
-                        <input type="number" id="smoothness_mean" name="smoothness_mean" step="0.001" required>
+                        <input type="number" id="smoothness_mean" name="smoothness_mean" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="compactness_mean">Compactness Mean</label>
-                        <input type="number" id="compactness_mean" name="compactness_mean" step="0.001" required>
+                        <input type="number" id="compactness_mean" name="compactness_mean" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="concavity_mean">Concavity Mean</label>
-                        <input type="number" id="concavity_mean" name="concavity_mean" step="0.001" required>
+                        <input type="number" id="concavity_mean" name="concavity_mean" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="concave_points_mean">Concave Points Mean</label>
-                        <input type="number" id="concave_points_mean" name="concave_points_mean" step="0.001" required>
+                        <input type="number" id="concave_points_mean" name="concave_points_mean" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="symmetry_mean">Symmetry Mean</label>
-                        <input type="number" id="symmetry_mean" name="symmetry_mean" step="0.001" required>
+                        <input type="number" id="symmetry_mean" name="symmetry_mean" step="0.000001" required>
                     </div>
 
                     <div class="form-group">
                         <label for="fractal_dimension_mean">Fractal Dimension Mean</label>
-                        <input type="number" id="fractal_dimension_mean" name="fractal_dimension_mean" step="0.001" required>
+                        <input type="number" id="fractal_dimension_mean" name="fractal_dimension_mean" step="0.000001" required>
                     </div>
                 </div>
 
@@ -301,29 +301,27 @@
         
             for (const feature in ranges) {
                 const [min, max] = ranges[feature];
-                const randomValue = (Math.random() * (max - min) + min).toFixed(3);
+                const randomValue = (Math.random() * (max - min) + min).toFixed(6);
                 document.getElementsByName(feature)[0].value = randomValue;
             }
         }
 
         function loadDemo(caseType) {
-            const benign = {
-                radius_mean: 12.45, texture_mean: 15.7, perimeter_mean: 82.57, area_mean: 477.1, 
-                smoothness_mean: 0.128, compactness_mean: 0.17, concavity_mean: 0.158, concave_points_mean: 0.081,
-                symmetry_mean: 0.209, fractal_dimension_mean: 0.077
-            };
+          const benign = {
+            radius_mean: 12.45, texture_mean: 15.7, perimeter_mean: 82.57, area_mean: 477.1, smoothness_mean: 0.1278,
+            compactness_mean: 0.17, concavity_mean: 0.1578, concave_points_mean: 0.08089, symmetry_mean: 0.2087, fractal_dimension_mean: 0.07613
+          };
 
-            const malignant = {
-                radius_mean: 20.57, texture_mean: 17.77, perimeter_mean: 132.9, area_mean: 1326.0, smoothness_mean:
-                0.085, compactness_mean: 0.079, concavity_mean: 0.087, concave_points_mean: 0.07, 
-                symmetry_mean: 0.181, fractal_dimension_mean: 0.057
-            };
+          const malignant = {
+            radius_mean: 20.57, texture_mean: 17.77, perimeter_mean: 132.9, area_mean: 1326.0, smoothness_mean: 0.08474,
+            compactness_mean: 0.07864, concavity_mean: 0.0869, concave_points_mean: 0.07017, symmetry_mean: 0.1812, fractal_dimension_mean: 0.05667
+          };
 
-            const data = caseType === 'malignant' ? malignant : benign;
+          const data = caseType === 'malignant' ? malignant : benign;
 
-            for (const field in data) {
-                document.getElementsByName(field)[0].value = data[field];
-            }
+          for (const field in data) {
+              document.getElementsByName(field)[0].value = data[field];
+          }
         }
     </script>
 </body>
