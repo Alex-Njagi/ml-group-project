@@ -3,22 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breast Cancer Diagnosis System</title>
+    <title>Breast Cancer Diagnosis System - Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 2px solid #FFD700;
+        }
+
+        .header {
+            background: #FFD700;
+            color: #000000;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        .result-container {
+            padding: 40px;
+        }
+
+        .result-card {
+            background: #f8f8f8;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .diagnosis-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .diagnosis-icon.benign {
+            color: #28a745;
+        }
+
+        .diagnosis-icon.malignant {
+            color: #dc3545;
+        }
+
+        .diagnosis-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .diagnosis-text.benign {
+            color: #28a745;
+        }
+
+        .diagnosis-text.malignant {
+            color: #dc3545;
+        }
+
+        .confidence-meter {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            position: relative;
+        }
+
+        .confidence-fill.benign {
+            background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+        }
+
+        .confidence-fill.malignant {
+            background: linear-gradient(90deg, #dc3545 0%, #fd7e14 100%);
+        }
+
+        .confidence-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .confidence-label {
+            color: #666666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .info-section {
+            background: #f8f8f8;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid #FFD700;
+        }
+
+        .info-section h3 {
+            color: #000000;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-section p {
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .info-section ul {
+            color: #666666;
+            line-height: 1.6;
+            padding-left: 20px;
+        }
+
+        .info-section li {
+            margin-bottom: 8px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #FFD700;
+            color: #000000;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+            background: #FFED4E;
+        }
+
+        .btn-secondary {
+            background: #f8f8f8;
+            color: #000000;
+            border: 2px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background: #FFD700;
+            border-color: #FFD700;
+            color: #000000;
+        }
+
+        .disclaimer {
+            background: #fff5f5;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #FFD700;
+            margin-top: 30px;
+        }
+
+        .disclaimer h4 {
+            color: #cc0000;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .disclaimer p {
+            color: #cc0000;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .result-container {
+                padding: 20px;
+            }
+            
+            .diagnosis-text {
+                font-size: 2rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Thank you for using the Breast Cancer Diagnosis System!</h1>
-    <p>Here is the prediction made from your measurements.</p>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-heartbeat"></i> Breast Cancer Diagnosis System</h1>
+            <p>Analysis Complete</p>
+        </div>
 
-    <h2>Prediction Result:</h2>
-    <p><strong>Diagnosis:</strong> {{ label | upper}}</p>
-    <p><strong>Confidence:</strong> {{ confidence }}</p>
+        <div class="result-container">
+            <div class="result-card">
+                <div class="diagnosis-icon {{ label.lower() }}">
+                    {% if label.lower() == 'benign' %}
+                        <i class="fas fa-check-circle"></i>
+                    {% else %}
+                        <i class="fas fa-exclamation-triangle"></i>
+                    {% endif %}
+                </div>
+                
+                <div class="diagnosis-text {{ label.lower() }}">
+                    {{ label | upper }}
+                </div>
+                
+                <div class="confidence-label">Confidence Level</div>
+                <div class="confidence-meter">
+                    <div class="confidence-fill {{ label.lower() }}">
+                        <div class="confidence-text">{{ confidence }}</div>
+                    </div>
+                </div>
+            </div>
 
-    <p>Based on the provided measurements, the model predicts that the breast cancer diagnosis is: 
-        <strong>{{ label }}</strong>.</p>
-    <p>Thank you for using our system. If you have any further questions or need assistance, please contact your 
-        healthcare provider.</p>
+            <div class="info-section">
+                <h3>
+                    <i class="fas fa-info-circle"></i>
+                    Analysis Summary
+                </h3>
+                <p>
+                    Based on the provided diagnostic measurements, our machine learning model has analyzed the sample 
+                    and generated the following prediction:
+                </p>
+                <ul>
+                    <li><strong>Diagnosis:</strong> {{ label | title }}</li>
+                    <li><strong>Confidence:</strong> {{ confidence }}</li>
+                    <li><strong>Analysis Method:</strong> Advanced Machine Learning Algorithm</li>
+                    <li><strong>Parameters Analyzed:</strong> 30 diagnostic features across mean, standard error, and worst values</li>
+                </ul>
+            </div>
 
-        <a href="{{ url_for('home') }}">
-            <button>Return to Home</button>
-        </a>
+            <div class="info-section">
+                <h3>
+                    <i class="fas fa-lightbulb"></i>
+                    What This Means
+                </h3>
+                {% if label.lower() == 'benign' %}
+                    <p>
+                        The analysis suggests that the sample shows characteristics typically associated with benign (non-cancerous) 
+                        tissue. This is a positive indication, but regular monitoring and follow-up with healthcare professionals 
+                        is still recommended.
+                    </p>
+                {% else %}
+                    <p>
+                        The analysis indicates characteristics that may be associated with malignant (cancerous) tissue. 
+                        This result requires immediate consultation with healthcare professionals for further evaluation and 
+                        appropriate medical intervention.
+                    </p>
+                {% endif %}
+            </div>
+
+            <div class="buttons">
+                <a href="{{ url_for('home') }}" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Return to Home
+                </a>
+                <a href="{{ url_for('step_1') }}" class="btn btn-secondary">
+                    <i class="fas fa-redo"></i> New Analysis
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        // Animate the confidence meter
+        setTimeout(() => {
+            const confidenceFill = document.querySelector('.confidence-fill');
+            const confidenceText = document.querySelector('.confidence-text');
+            const confidence = '{{ confidence }}';
+            
+            // Extract the percentage value
+            const percentage = parseFloat(confidence.replace('%', ''));
+            
+            // Animate the fill
+            confidenceFill.style.width = '0%';
+            setTimeout(() => {
+                confidenceFill.style.width = confidence;
+            }, 100);
+        }, 500);
+    </script>
 </body>
+</html>

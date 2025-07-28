@@ -3,70 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breast Cancer Diagnosis System</title>
+    <title>Breast Cancer Diagnosis System - Step 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 2px solid #FFD700;
+        }
+
+        .header {
+            background: #FFD700;
+            color: #000000;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            background: rgba(0, 0, 0, 0.2);
+            height: 6px;
+            border-radius: 3px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: #000000;
+            height: 100%;
+            width: 33.33%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            color: #000000;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f8f8;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #FFD700;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+
+        .form-group input:hover {
+            border-color: #FFD700;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #FFD700;
+            color: #000000;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+            background: #FFED4E;
+        }
+
+        .btn-secondary {
+            background: #f8f8f8;
+            color: #000000;
+            border: 2px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background: #FFD700;
+            border-color: #FFD700;
+            color: #000000;
+        }
+
+        .step-info {
+            background: #f8f8f8;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #FFD700;
+        }
+
+        .step-info h3 {
+            color: #000000;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .step-info p {
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Breast Cancer Diagnosis System</h1>
-    <p>Kindly fill in the following form.</p>
-       
-    <form action="{{ url_for('step_1') }}" method="post">
-        <label for="radius_mean">Radius Mean:</label>
-        <input type="float" id="radius_mean" name="radius_mean" required><br><br>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-heartbeat"></i> Breast Cancer Diagnosis System</h1>
+            <p>Step 1 of 3: Mean Values</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
 
-        <label for="texture_mean">Texture Mean:</label>
-        <input type="float" id="texture_mean" name="texture_mean" required><br><br>
+        <div class="form-container">
+            <div class="step-info">
+                <h3><i class="fas fa-info-circle"></i> Mean Values</h3>
+                <p>Please enter the mean values for each diagnostic parameter. These represent the average measurements across all cells in the sample.</p>
+            </div>
 
-        <label for="perimeter_mean">Perimeter Mean:</label>
-        <input type="float" id="perimeter_mean" name="perimeter_mean" required><br><br>
+            <form action="{{ url_for('step_1') }}" method="post">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="radius_mean">Radius Mean</label>
+                        <input type="number" id="radius_mean" name="radius_mean" step="0.001" required>
+                    </div>
 
-        <label for="area_mean">Area Mean:</label>
-        <input type="float" id="area_mean" name="area_mean" required><br><br>
+                    <div class="form-group">
+                        <label for="texture_mean">Texture Mean</label>
+                        <input type="number" id="texture_mean" name="texture_mean" step="0.001" required>
+                    </div>
 
-        <label for="smoothness_mean">Smoothness Mean:</label>
-        <input type="float" id="smoothness_mean" name="smoothness_mean" required><br><br>
+                    <div class="form-group">
+                        <label for="perimeter_mean">Perimeter Mean</label>
+                        <input type="number" id="perimeter_mean" name="perimeter_mean" step="0.001" required>
+                    </div>
 
-        <label for="compactness_mean">Compactness Mean:</label>
-        <input type="float" id="compactness_mean" name="compactness_mean" required><br><br>
+                    <div class="form-group">
+                        <label for="area_mean">Area Mean</label>
+                        <input type="number" id="area_mean" name="area_mean" step="0.001" required>
+                    </div>
 
-        <label for="concavity_mean">Concavity Mean:</label>
-        <input type="float" id="concavity_mean" name="concavity_mean" required><br><br>
+                    <div class="form-group">
+                        <label for="smoothness_mean">Smoothness Mean</label>
+                        <input type="number" id="smoothness_mean" name="smoothness_mean" step="0.001" required>
+                    </div>
 
-        <label for="concave_points_mean">Concave Points Mean:</label>
-        <input type="float" id="concave_points_mean" name="concave_points_mean" required><br><br>
+                    <div class="form-group">
+                        <label for="compactness_mean">Compactness Mean</label>
+                        <input type="number" id="compactness_mean" name="compactness_mean" step="0.001" required>
+                    </div>
 
-        <label for="symmetry_mean">Symmetry Mean:</label>
-        <input type="float" id="symmetry_mean" name="symmetry_mean" required><br><br>
+                    <div class="form-group">
+                        <label for="concavity_mean">Concavity Mean</label>
+                        <input type="number" id="concavity_mean" name="concavity_mean" step="0.001" required>
+                    </div>
 
-        <label for="fractal_dimension_mean">Fractal Dimension Mean:</label>
-        <input type="float" id="fractal_dimension_mean" name="fractal_dimension_mean" required><br><br>
+                    <div class="form-group">
+                        <label for="concave_points_mean">Concave Points Mean</label>
+                        <input type="number" id="concave_points_mean" name="concave_points_mean" step="0.001" required>
+                    </div>
 
-        <button type="submit">Next Step >></button>
-    </form>
+                    <div class="form-group">
+                        <label for="symmetry_mean">Symmetry Mean</label>
+                        <input type="number" id="symmetry_mean" name="symmetry_mean" step="0.001" required>
+                    </div>
 
-    <button type="button" onclick="generateRandomInputs()">Generate Random Inputs</button>
+                    <div class="form-group">
+                        <label for="fractal_dimension_mean">Fractal Dimension Mean</label>
+                        <input type="number" id="fractal_dimension_mean" name="fractal_dimension_mean" step="0.001" required>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="button" class="btn btn-secondary" onclick="generateRandomInputs()">
+                        <i class="fas fa-dice"></i> Generate Random Values
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="loadDemo('benign')">
+                        <i class="fas fa-dice"></i> Generate Benign Values
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="loadDemo('malignant')">
+                        <i class="fas fa-dice"></i> Generate Malignant Values
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Next Step <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function generateRandomInputs() {
+            const ranges = {
+                radius_mean: [6, 28],
+                texture_mean: [10, 40],
+                perimeter_mean: [40, 190],
+                area_mean: [150, 2500],
+                smoothness_mean: [0.05, 0.16],
+                compactness_mean: [0.02, 0.35],
+                concavity_mean: [0.01, 0.4],
+                concave_points_mean: [0.005, 0.2],
+                symmetry_mean: [0.1, 0.3],
+                fractal_dimension_mean: [0.05, 0.1]
+            };
+        
+            for (const feature in ranges) {
+                const [min, max] = ranges[feature];
+                const randomValue = (Math.random() * (max - min) + min).toFixed(3);
+                document.getElementsByName(feature)[0].value = randomValue;
+            }
+        }
+
+        function loadDemo(caseType) {
+            const benign = {
+                radius_mean: 12.45, texture_mean: 15.7, perimeter_mean: 82.57, area_mean: 477.1, 
+                smoothness_mean: 0.1278, compactness_mean: 0.17, concavity_mean: 0.1578, concave_points_mean: 0.08089,
+                symmetry_mean: 0.2087, fractal_dimension_mean: 0.07613
+            };
+
+            const malignant = {
+                radius_mean: 20.57, texture_mean: 17.77, perimeter_mean: 132.9, area_mean: 1326.0, smoothness_mean:
+                0.08474, compactness_mean: 0.07864, concavity_mean: 0.0869, concave_points_mean: 0.07017, 
+                symmetry_mean: 0.1812, fractal_dimension_mean: 0.05667
+            };
+
+            const data = caseType === 'malignant' ? malignant : benign;
+
+            for (const field in data) {
+                document.getElementsByName(field)[0].value = data[field];
+            }
+        }
+    </script>
 </body>
-
-<script>
-    function generateRandomInputs() {
-      const ranges = {
-        radius_mean: [6, 28],
-        texture_mean: [10, 40],
-        perimeter_mean: [40, 190],
-        area_mean: [150, 2500],
-        smoothness_mean: [0.05, 0.16],
-        compactness_mean: [0.02, 0.35],
-        concavity_mean: [0.01, 0.4],
-        concave_points_mean: [0.005, 0.2],
-        symmetry_mean: [0.1, 0.3],
-        fractal_dimension_mean: [0.05, 0.1]
-      };
-    
-      for (const feature in ranges) {
-        const [min, max] = ranges[feature];
-        const randomValue = (Math.random() * (max - min) + min).toFixed(5);
-        document.getElementsByName(feature)[0].value = randomValue;
-      }
-    }
-</script>
-
 </html>
