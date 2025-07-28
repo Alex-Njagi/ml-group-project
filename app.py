@@ -75,4 +75,4 @@ def step_3():
     return render_template('worst_values.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
