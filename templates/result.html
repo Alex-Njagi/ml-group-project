@@ -261,6 +261,7 @@
             <p>Analysis Complete</p>
         </div>
 
+        <!--Object for outputting prediction results-->
         <div class="result-container">
             <div class="result-card">
                 <div class="diagnosis-icon {{ label.lower() }}">
@@ -283,6 +284,7 @@
                 </div>
             </div>
 
+            <!-- Information sections -->
             <div class="info-section">
                 <h3>
                     <i class="fas fa-info-circle"></i>
@@ -320,6 +322,7 @@
                 {% endif %}
             </div>
 
+            <!-- Button Section -->
             <div class="buttons">
                 <a href="{{ url_for('home') }}" class="btn btn-primary">
                     <i class="fas fa-home"></i> Return to Home

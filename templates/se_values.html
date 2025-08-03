@@ -207,6 +207,7 @@
             </div>
         </div>
 
+        <!-- Step 2: Standard Error Values -->
         <div class="form-container">
             <div class="step-info">
                 <h3><i class="fas fa-info-circle"></i> Standard Error Values</h3>
@@ -285,6 +286,7 @@
     </div>
 
     <script>
+        // Function to generate random inputs within specified ranges
         function generateRandomInputs() {
             const ranges = {
                 radius_se: [0.1, 1.5],
@@ -298,7 +300,7 @@
                 symmetry_se: [0.005, 0.08],
                 fractal_dimension_se: [0.001, 0.03]
             };
-        
+            // Iterate through each feature and set a random value within the specified range
             for (const feature in ranges) {
                 const [min, max] = ranges[feature];
                 const randomValue = (Math.random() * (max - min) + min).toFixed(6);
@@ -306,6 +308,7 @@
             }
         }
 
+        // Function to load predefined demo values for benign or malignant cases
         function loadDemo(caseType) {
             const benign = {
                 radius_se: 0.269900,
@@ -333,10 +336,10 @@
                 fractal_dimension_se: 0.006193
             };
 
-            const data = caseType === 'malignant' ? malignant : benign;
+            const data = caseType === 'malignant' ? malignant : benign; // Load benign or malignant data
 
             for (const field in data) {
-                document.getElementsByName(field)[0].value = data[field];
+                document.getElementsByName(field)[0].value = data[field];   // Set the value of each input field
             }
         }
     </script>
